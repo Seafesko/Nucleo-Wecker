@@ -1,0 +1,7 @@
+"src/clock.o"
+"src/i2c.o"
+"src/lcd.o"
+"src/main.o"
+"src/systick.o"
+"startup/startup_stm32l073xx.o"
+"startup/system_stm32l0xx.o"
