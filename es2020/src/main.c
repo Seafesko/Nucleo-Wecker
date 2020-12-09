@@ -13,12 +13,12 @@ int main(void) {
 	                 "    Systems!    ");
 
 	while (1) {
-		delay_ms(700);
+		//Test for commits
 		lcd_print_string("    Embedded    "
-			             "    Systems!    ");
-		delay_ms(300);
-		lcd_print_string("                "
-			             "                ");
-
+			                 "    Systems!    ");
+		delay_ms(500);
+		lcd_print_string("    Bla         "
+			                 "    Test!       ");
+		delay_ms(500);
 	}
 }

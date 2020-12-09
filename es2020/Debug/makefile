@@ -45,13 +45,13 @@ endif
 all: es2020.elf
 
 dependents:
-	-cd /home/felix/Workbench/workspace/nucleo-l073rz_hal_lib/Debug && $(MAKE) clean all
+	-cd C:/Users/braht/workspace/nucleo-l073rz_hal_lib/Debug && $(MAKE) clean all
 
 # Tool invocations
-es2020.elf: $(OBJS) $(USER_OBJS) /home/felix/Workbench/workspace/nucleo-l073rz_hal_lib/Debug/libnucleo-l073rz_hal_lib.a
+es2020.elf: $(OBJS) $(USER_OBJS) C:/Users/braht/workspace/nucleo-l073rz_hal_lib/Debug/libnucleo-l073rz_hal_lib.a
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU G++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -L"/home/felix/Workbench/workspace/nucleo-l073rz_hal_lib/Debug" -T"/home/felix/Workbench/workspace/es2020/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -fno-exceptions -fno-rtti -o "es2020.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -L"C:\Users\braht\workspace\nucleo-l073rz_hal_lib\Debug" -T"C:/Users/braht/workspace/es2020/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -fno-exceptions -fno-rtti -o "es2020.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -69,6 +69,6 @@ post-build:
 
 .PHONY: all clean dependents
 .SECONDARY: post-build
-/home/felix/Workbench/workspace/nucleo-l073rz_hal_lib/Debug/libnucleo-l073rz_hal_lib.a:
+C:/Users/braht/workspace/nucleo-l073rz_hal_lib/Debug/libnucleo-l073rz_hal_lib.a:
 
 -include ../makefile.targets
