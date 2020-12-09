@@ -1,3 +1,7 @@
 Debug/
 Release/
 *.cfg
+.project*
+.cproject*
+es2020*
+language.settings.xml*
