@@ -8,6 +8,7 @@
 
 #define LCD_I2C_ADDRESS 0x3e
 
+//test comment
 // lcd_instructions
 #define CLEAR_DISPLAY			0x01
 #define RETURN_HOME				0x02
