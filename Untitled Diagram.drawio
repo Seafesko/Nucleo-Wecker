@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-09T14:48:07.240Z" agent="5.0 (Windows)" etag="_uR_VD56vpkjB_qf7pkL" version="14.0.0" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2020-12-09T14:48:33.759Z" agent="5.0 (Windows)" etag="PkSMMlbrQRMrv4qI37ai" version="14.0.0" type="github" pages="4">
   <diagram name="Page-1" id="8ce9d11a-91a2-4d17-14d8-a56ed91bf033">
     <mxGraphModel dx="2214" dy="781" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
@@ -64,9 +64,6 @@
         </mxCell>
         <mxCell id="uun37S1YXeA-4gwnj6Af-3" value="Start" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="uun37S1YXeA-4gwnj6Af-1">
           <mxGeometry x="340" y="90" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="-KnNzTkH-OqxsifT787O-0" value="&lt;div&gt;Button 0 = Zurück&lt;/div&gt;&lt;div&gt;Button 1 = Bestätigen&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="uun37S1YXeA-4gwnj6Af-1">
-          <mxGeometry x="60" y="100" width="150" height="50" as="geometry" />
         </mxCell>
         <mxCell id="-KnNzTkH-OqxsifT787O-6" value="&lt;div&gt;Anzeige 0 (Schwierigkeit)&lt;br&gt;&lt;/div&gt;&lt;div&gt;Auswahl 0&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="uun37S1YXeA-4gwnj6Af-1">
           <mxGeometry x="340" y="220" width="120" height="60" as="geometry" />
