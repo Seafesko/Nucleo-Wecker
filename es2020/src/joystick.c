@@ -35,9 +35,18 @@ void joystick_setup(void){
 	}
 
 	//ADC Settings
-	/* */
+	/*Channel Selection */
+	if ((ADC1->CR & ADC_CR_ADSTART == 0)) //only allowed when ADSTART=0
+	{
+		ADC1->CHSELR = (ADC1->CHSELR
+				& ~(ADC_CHSELR_CHSEL3_Msk | ADC_CHSELR_CHSEL4_Msk))
+				| ((1 << ADC_CHSELR_CHSEL3_Pos) & ADC_CHSELR_CHSEL3_Msk)
+				| ((1 << ADC_CHSELR_CHSEL4_Pos) & ADC_CHSELR_CHSEL4_Msk);
+	}
+	return;
+}
 
-
+uint16_t read_joystick(void){
 	//ADC enable sequence example
 	/* (1) Clear the ADRDY bit */
 	/* (2) Enable the ADC */
@@ -46,9 +55,18 @@ void joystick_setup(void){
 	ADC1->CR |= ADC_CR_ADEN;/* (2) */
 	if((ADC1->CFGR1 & ADC_CFGR1_AUTOFF)==0)
 	{
+		int i;
 		while((ADC1->ISR & ADC_ISR_ADRDY)==0)/* (3) */
 		{
-			/* For robust implementation, add here time-out management */
+			delay_ms(50);
+			i++;
+			if (i>100){
+				break;
+			}
 		}
 	}
+
+	uint16_t result = ADC1->DR;
+	delay_ms(5);
+	return result;
 }
