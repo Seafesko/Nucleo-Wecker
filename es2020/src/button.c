@@ -11,6 +11,7 @@ void button_setup(void){
 
 	//enable Clock for GPIO
 	RCC->IOPENR |= RCC_IOPENR_GPIOAEN;
+	RCC->IOPENR |= RCC_IOPENR_GPIOBEN;
 
 	//set GPIO mode for PB4 and PB5 to input mode (mode 0)
 	GPIOB->MODER = (GPIOB->MODER

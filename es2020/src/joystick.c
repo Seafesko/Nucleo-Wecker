@@ -3,70 +3,89 @@
 
 //setup for Button Module
 void joystick_setup(void){
-	/*should connect to Connector A3 on extension board
-	 *A3 resolves to: A3-->PB0 and A4-->PC1
-	 */
 
 	//enable Clock for GPIO
 	RCC->IOPENR |= RCC_IOPENR_GPIOAEN;
 
-	//set GPIO mode for PB0 to analog mode (mode 11)
-	GPIOB->MODER = (GPIOB->MODER & ~(GPIO_MODER_MODE0_Msk ))
-			| ((11 << GPIO_MODER_MODE0_Pos) & GPIO_MODER_MODE0_Msk);
-
-	//set GPIO mode for PC1 to analog mode (mode 11)
-	GPIOC->MODER = (GPIOC->MODER & ~(GPIO_MODER_MODE1_Msk ))
+	//set GPIO mode for PA0 and PA1 to analog mode (mode 11)
+	GPIOB->MODER = (GPIOB->MODER
+			& ~(GPIO_MODER_MODE0_Msk | GPIO_MODER_MODE1_Msk))
+			| ((11 << GPIO_MODER_MODE0_Pos) & GPIO_MODER_MODE0_Msk)
 			| ((11 << GPIO_MODER_MODE1_Pos) & GPIO_MODER_MODE1_Msk);
 
+	//enable Clock for ADC
+	RCC->APB2ENR |= RCC_APB2ENR_ADCEN;
 
-
-	//ADC
-	//calibrate
-	/*The internal analog calibration is kept if the ADC is disabled (ADEN=0) or if the ADC voltage reference is disabled (ADVREGEN = 0).*/
-	if ((ADC1->CR & ADC_CR_ADEN)==0)//Calibration can only be initiated when the ADC is disabled (when ADEN=0)
+	// ADC
+	// Calibrate
+	/* The internal analog calibration is kept if the ADC is disabled (ADEN=0) or if the ADC voltage reference is disabled (ADVREGEN = 0). */
+	/* Calibration can only be initiated when the ADC is disabled (when ADEN=0) */
+	/* (1) Ensure that ADEN = 0 */
+	/* (2) Clear ADEN */
+	/* (3) Set ADCAL=1 */
+	/* (4) Wait until EOCAL=1 */
+	/* (5) Clear EOCAL */
+	if((ADC1->CR & ADC_CR_ADEN)!=0)/* (1) */
 	{
-		// calibrate Calibration setting bit ADCAL=1
-		ADC1->CR = (ADC1->CR & ~(ADC_CR_ADCAL_Msk ))
-		| ((1 << ADC_CR_ADCAL_Pos) & ADC_CR_ADCAL_Msk);
-		while((ADC1->CR & ADC_CR_ADCAL)==1) //It is then cleared by hardware as soon the calibration completes.
-		{
-			//waiting for calibration complete
-		}
+		ADC1->CR |= ADC_CR_ADDIS;/* (2) */
 	}
-
-	//ADC Settings
-	/*Channel Selection */
-	if ((ADC1->CR & ADC_CR_ADSTART == 0)) //only allowed when ADSTART=0
+	ADC1->CR |= ADC_CR_ADCAL;/* (3) */
+	while((ADC1->ISR & ADC_ISR_EOCAL)==0)/* (4) */
 	{
-		ADC1->CHSELR = (ADC1->CHSELR
-				& ~(ADC_CHSELR_CHSEL3_Msk | ADC_CHSELR_CHSEL4_Msk))
-				| ((1 << ADC_CHSELR_CHSEL3_Pos) & ADC_CHSELR_CHSEL3_Msk)
-				| ((1 << ADC_CHSELR_CHSEL4_Pos) & ADC_CHSELR_CHSEL4_Msk);
+		/* For robust implementation, add here time-out management */
 	}
-	return;
+	ADC1->ISR |= ADC_ISR_EOCAL;/* (5) */
+
+	// ADC selection
+	/* (1) Select PCLK by writing 11 in CKMODE */
+	/* (2) Select the auto off mode */
+	/* (3) Select 10 bit resolution */
+	ADC1->CFGR2 |= ADC_CFGR2_CKMODE;/* (1) */
+	ADC1->CFGR1 |= ADC_CFGR1_AUTOFF;/* (2) */
+	ADC1->CFGR1 = (ADC1->CFGR1 & ~ADC_CFGR1_RES_Msk) | (01 << ADC_CFGR1_RES_Pos);
 }
 
-uint16_t read_joystick(void){
-	//ADC enable sequence example
-	/* (1) Clear the ADRDY bit */
-	/* (2) Enable the ADC */
-	/* (3) Wait until ADC ready */
-	ADC1->ISR |= ADC_ISR_ADRDY;/* (1) */
-	ADC1->CR |= ADC_CR_ADEN;/* (2) */
-	if((ADC1->CFGR1 & ADC_CFGR1_AUTOFF)==0)
+struct joystick_a read_joystick_a(void){
+	// Single conversion sequence code example - Software trigger
+	ADC1->CHSELR = ADC_CHSELR_CHSEL0;/* Select CHSEL0 */
+	/* Performs the AD conversion */
+	ADC1->CR |= ADC_CR_ADSTART;/* start the ADC conversion */
+	while((ADC1->ISR & ADC_ISR_EOC)==0)/* wait end of conversion */
 	{
-		int i;
-		while((ADC1->ISR & ADC_ISR_ADRDY)==0)/* (3) */
-		{
-			delay_ms(50);
-			i++;
-			if (i>100){
-				break;
-			}
-		}
+		/* For robust implementation, add here time-out management */
 	}
-
-	uint16_t result = ADC1->DR;
-	delay_ms(5);
-	return result;
+	uint16_t x = ADC1->DR; /*read Value*/
+	ADC1->CHSELR = ADC_CHSELR_CHSEL1;/* Select CHSEL1 */
+	ADC1->CR |= ADC_CR_ADSTART;/* start the ADC conversion */
+	while((ADC1->ISR & ADC_ISR_EOC)==0)/* wait end of conversion */
+	{
+		/* For robust implementation, add here time-out management */
+	}
+	uint16_t y = ADC1->DR;
+	struct joystick_a joy_res = { x, y};
+	return joy_res;
 }
+
+struct joystick_d read_joystick_d(void){
+	struct joystick_d res =	analog_to_digital(read_joystick_a());
+	return res;
+}
+
+struct joystick_d analog_to_digital(struct joystick_a joy_ana){
+	_Bool button = 0;
+	int8_t x_dig = 0;
+	if 		(joy_ana.x > 1000) 	{button = 1;}  //Button Press
+	else if	(joy_ana.x < 300) 	{x_dig = 1;}   //x up (to Connector)
+	else if (joy_ana.x > 500) 	{x_dig = -1;}  //x down
+	else 						{x_dig = 0;}   //x neutral
+
+	int8_t y_dig = 0;
+	if 		(joy_ana.y > 1000) 	{button = 1;}  //Button Press
+	else if	(joy_ana.y < 300) 	{y_dig = 1;}   //y up (to Connector)
+	else if (joy_ana.y > 500) 	{y_dig = -1;}  //y down
+	else 						{y_dig = 0;}   //y neutral
+
+	struct joystick_d joy_dig = { x_dig, y_dig, button};
+	return joy_dig;
+}
+
