@@ -18,6 +18,7 @@ int main(void) {
 	lcd_init();
 	button_setup();
 	joystick_setup();
+	rng_setup();
 
 	//Display Texts
 	const char* text_b0 = ("    Button 0    "
@@ -48,6 +49,8 @@ int main(void) {
 
 		if (button_0) 		{
 			//TODO: call Alarm Clock subprocess here
+			lcd_print_string (get_rng());
+			delay_ms(1000); //Displays for 1 second
 			lcd_print_string(text_b0);
 			delay_ms(1000); //Displays for 1 second
 		}
