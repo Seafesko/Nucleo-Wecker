@@ -89,3 +89,15 @@ struct joystick_d analog_to_digital(struct joystick_a joy_ana){
 	return joy_dig;
 }
 
+struct joystick_d get_joy_xy_poll(void){
+	struct joystick_d joy_in;
+	_Bool joy_action;
+	joy_action = 0;
+	// Polling on Inputs
+	do {
+		joy_in = read_joystick_d();
+		joy_action = joy_in.x + joy_in.y;
+		delay_ms(100);
+	} while (!joy_action);
+	return joy_in;
+}
