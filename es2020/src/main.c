@@ -41,20 +41,14 @@ int main(void) {
 		button_1 = 0;
 
 		while(!button_press){
-			button_0 = read_button_0();
-			button_1 = read_button_1();
+			button_0     = read_button_0();
+			button_1     = read_button_1();
 			button_press = button_0 + button_1;
 			delay_ms(20);
 		}
 
-		if (button_0) 		{
-			//TODO: call Alarm Clock subprocess here
-			lcd_print_string (get_rng());
-			delay_ms(1000); //Displays for 1 second
-			lcd_print_string(text_b0);
-			delay_ms(1000); //Displays for 1 second
-		}
-		else if (button_1) 	{settings();}
-		else 				{lcd_print_string(text_main);}
+		if      (button_0) {programm();}
+		else if (button_1) {settings();}
+		else 			   {lcd_print_string(text_main);}
 	}
 }
