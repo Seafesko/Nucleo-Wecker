@@ -19,7 +19,7 @@ void rng_setup(void){
 	RNG->CR |= RNG_CR_RNGEN;
 }
 
-uint32_t get_rng(void){
+static uint32_t get_true_rng(void){
 	/*To run the RNG in polling mode:
 	 * 1.Enable the random number generation by setting the RNGEN bit to “1” in the RNG_CR register.
 	 * 2.Read the RNG_SR register and check that:–No error occurred (the SEIS and CEIS bits should be set to ‘0’)
@@ -47,4 +47,15 @@ uint32_t get_rng(void){
 		/* For robust implementation, add here time-out management */
 	}
 	return RNG->DR;
+}
+
+static uint32_t get_untrue_rng(void){
+	uint32_t rn = 1119089326;
+	rn = 1119089364;
+	return rn;
+}
+
+uint32_t get_rng(void){
+	uint32_t rn = get_untrue_rng();
+	return rn;
 }
