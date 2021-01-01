@@ -1,4 +1,5 @@
 #include <stm32l073xx.h>
+#include "settings.h"
 #include "joystick.h"
 #include "button.h"
 #include "systick.h"
@@ -95,6 +96,24 @@ static void test_joy(void){
 
 uint8_t get_difficulty(void){
 	return difficulty;
+}
+
+uint8_t get_end_pos(void){
+	uint8_t end_pos;
+	switch (difficulty) {
+		case 0:
+			end_pos = 8;
+			break;
+		case 1:
+			end_pos = 16;
+			break;
+		case 2:
+			end_pos = 32;
+			break;
+		default:
+			end_pos = 32;
+	}
+	return end_pos;
 }
 
 uint8_t get_device(void){

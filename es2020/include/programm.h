@@ -16,7 +16,7 @@ extern "C" {
 #endif
 
 /* external functions */
-
+void programm (void);
 
 #ifdef __cplusplus
 }

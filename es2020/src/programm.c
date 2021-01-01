@@ -1,5 +1,6 @@
 #include "programm.h"
 #include "joystick.h"
+#include "settings.h"
 #include "rng.h"
 #include "lcd.h"
 #include "systick.h"
@@ -49,20 +50,29 @@ static void display_arrow( uint8_t two_bit_number){
 	delay_ms(250);
 }
 
-/* Displays 16 Arrows (one row) on LCD
- * 2 Bits equals one Arrow
+/* Displays Arrows on LCD
+ * Always 16 Symbols
+ * Amount of Arrows depending on difficulty
+ * 2 Bits of rn equals one Arrow
  * */
 static void display_arrows( uint32_t rn)
 {
 	uint8_t two_bit_number;
 	uint32_t mask_2bit = 0x3;
-	uint16_t shift = 0;
+	uint8_t pos = 0;
+	uint8_t end_pos = get_end_pos();
 	do{
-		two_bit_number = (rn >> shift) & mask_2bit;
+		two_bit_number = (rn >> pos) & mask_2bit;
 		display_arrow(two_bit_number);
-		shift ++;
-		shift ++;
-	}while(shift != 32);
+		pos ++;
+		pos ++;
+	}while(pos < end_pos);
+	//fill rest with blanks
+	while(pos < 32){
+		lcd_print_char(0xFE);
+		pos ++;
+		pos ++;
+	};
 }
 
 /* Shapes joystick input in two-bit encoded arrow direction number
@@ -86,8 +96,9 @@ static void joystick_prg(void){
 	uint32_t rn; 		// random number for arrow pattern
 	uint32_t mask; 		// so only input gets compared
 	uint32_t input; 	// joystick input concatenated
-	uint8_t pos; 		// current position in input and rn
 	uint8_t tbn = 0; 	// current read two bit number (arrow)
+	uint8_t pos; 		// current position in input and rn
+	uint8_t end_pos = get_end_pos(); // depending on difficulty
 
 	do{
 		if (reset){
@@ -96,8 +107,6 @@ static void joystick_prg(void){
 			input = 0;
 			mask = 0xfffffffc;
 			rn = get_rng();
-			//reduce rn length based on difficulty
-
 			display_arrows(rn);
 		}
 		tbn = to_two_bit_number(get_joy_xy_poll());
@@ -113,7 +122,13 @@ static void joystick_prg(void){
 			lcd_print_string(text_falsch);
 			delay_ms(2500);
 		}
-	}while(input != rn);
+	}while((pos < end_pos));
+	//fill rest with blanks
+	while(pos < 32){
+		lcd_print_char(0xFE);
+		pos ++;
+		pos ++;
+	};
 	lcd_print_string(text_richtig);
 	delay_ms(2500);
 }
