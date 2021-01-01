@@ -13,7 +13,7 @@ const char* text_prg_joy = 		("Stop den Alarm! "
 const char* text_prg_touch =	("Stop den Alarm! "
 		       	   	       	   	 "----<Touch>-----");
 const char * text_richtig = 	("    Richtig!    "
-	   	 	  	  	  	  	     "---<Alarm aus>--");
+	   	 	  	  	  	  	     "--<Alarm aus!>--");
 const char * text_falsch = 		("    Falsch!     "
 			   	 	  	  	  	 "<Beep Beep Beep>");
 const char* text_diffi =		("Schwierigkeit:  "
@@ -77,32 +77,35 @@ static uint8_t to_two_bit_number(struct joystick_d input){
 }
 
 /* Main Joystick program
- * Gets a random Number an Displays it as Arrows on LCD
- * Reads Joystick Input and compares it with displayed Arrows until matched
+ * Gets a random number an displays it as Arrows on LCD
+ * Reads joystick input and compares it with displayed Arrows until matched
+ * Wrong input causes reset
  * */
 static void joystick_prg(void){
 	_Bool reset = 1;
-	uint32_t rn;
-	uint32_t mask;
-	uint32_t input;
-	uint8_t count;
-	uint8_t tbn = 0;
+	uint32_t rn; 		// random number for arrow pattern
+	uint32_t mask; 		// so only input gets compared
+	uint32_t input; 	// joystick input concatenated
+	uint8_t pos; 		// current position in input and rn
+	uint8_t tbn = 0; 	// current read two bit number (arrow)
 
 	do{
 		if (reset){
 			reset = 0;
-			count = 0;
+			pos = 0;
 			input = 0;
 			mask = 0xfffffffc;
 			rn = get_rng();
+			//reduce rn length based on difficulty
+
 			display_arrows(rn);
 		}
 		tbn = to_two_bit_number(get_joy_xy_poll());
 		display_arrow(tbn);
-		input =  input | (tbn << count);
-		if (count != 0) {mask = (mask << 2);}
-		count ++;
-		count ++;
+		input =  input | (tbn << pos);
+		if (pos != 0) {mask = (mask << 2);}
+		pos ++;
+		pos ++;
 		if (input != (rn & ~mask)){
 			reset = 1;
 			lcd_set_cursor(1, 15);
