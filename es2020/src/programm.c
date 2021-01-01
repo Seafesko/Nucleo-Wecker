@@ -7,11 +7,15 @@
 
 //Display Texts
 const char* text_prg1 = 		("Alarm! Wach auf!"
-		       	   	     	 	 "Beep Beep Beep  ");
+		       	   	     	 	 "<Beep Beep Beep>");
 const char* text_prg_joy = 		("Stop den Alarm! "
 		       	   	     	 	 "---<Joystick>---");
 const char* text_prg_touch =	("Stop den Alarm! "
 		       	   	       	   	 "----<Touch>-----");
+const char * text_richtig = 	("    Richtig!    "
+	   	 	  	  	  	  	     "---<Alarm aus>--");
+const char * text_falsch = 		("    Falsch!     "
+			   	 	  	  	  	 "<Beep Beep Beep>");
 const char* text_diffi =		("Schwierigkeit:  "
 		       	   	          	 "     .:| |:.    ");
 
@@ -66,35 +70,34 @@ static void joystick_prg(void){
 	_Bool reset = 1;
 	uint32_t rn;
 	uint32_t mask;
-	uint32_t input = 0;
-	uint16_t count = 0;
+	uint32_t input;
+	uint8_t count;
 	uint8_t tbn = 0;
 
 	do{
 		if (reset){
 			reset = 0;
-			mask = ~0;
+			count = 0;
+			input = 0;
+			mask = 0xfffffffc;;
 			rn = get_rng();
 			display_arrows(rn);
 		}
 		tbn = to_two_bit_number(get_joy_xy_poll());
 		display_arrow(tbn);
 		input =  input | (tbn << count);
+		if (count != 0) {mask = (mask << 2);}
 		count ++;
 		count ++;
-		mask = (mask << count);
-		mask = mask | 0;
 		if (input != (rn & ~mask)){
 			reset = 1;
-			count = 0;
-			lcd_set_cursor(2, 16);
-			lcd_print_string(" Fehler !        "
-			   	       	  	 " Nochmal!        ");
+			lcd_set_cursor(1, 15);
+			lcd_print_char(0xFE);
+			lcd_print_string(text_falsch);
 			delay_ms(2500);
 		}
 	}while(input != rn);
-	lcd_print_string(("Richtig !!!     "
- 	       	   	 	  "----<Touch>-----"));
+	lcd_print_string(text_richtig);
 	delay_ms(2500);
 }
 
