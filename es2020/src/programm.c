@@ -19,12 +19,17 @@ const char * text_falsch = 		("    Falsch!     "
 const char* text_diffi =		("Schwierigkeit:  "
 		       	   	          	 "     .:| |:.    ");
 
+//LCD Codes for displaying "Arrows"
 const char left 	= 0x7F;
 const char right 	= 0x7E;
 const char up 		= 0x5E;
 const char down 	= 0x76;
 
+/* Displays single Arrow Symbol on Display
+ * Using 2 LSB as Coding (masked)
+ * */
 static void display_arrow( uint8_t two_bit_number){
+	two_bit_number = two_bit_number & 0x3;
 	switch (two_bit_number) {
 	case 0:
 		lcd_print_char(down);
@@ -44,6 +49,9 @@ static void display_arrow( uint8_t two_bit_number){
 	delay_ms(250);
 }
 
+/* Displays 16 Arrows (one row) on LCD
+ * 2 Bits equals one Arrow
+ * */
 static void display_arrows( uint32_t rn)
 {
 	uint8_t two_bit_number;
@@ -57,6 +65,8 @@ static void display_arrows( uint32_t rn)
 	}while(shift != 32);
 }
 
+/* Shapes joystick input in two-bit encoded arrow direction number
+ * */
 static uint8_t to_two_bit_number(struct joystick_d input){
 	uint8_t tbn = 0;
 	if (input.x < 0) {tbn = 0;}
@@ -66,6 +76,10 @@ static uint8_t to_two_bit_number(struct joystick_d input){
 	return tbn;
 }
 
+/* Main Joystick program
+ * Gets a random Number an Displays it as Arrows on LCD
+ * Reads Joystick Input and compares it with displayed Arrows until matched
+ * */
 static void joystick_prg(void){
 	_Bool reset = 1;
 	uint32_t rn;
@@ -79,7 +93,7 @@ static void joystick_prg(void){
 			reset = 0;
 			count = 0;
 			input = 0;
-			mask = 0xfffffffc;;
+			mask = 0xfffffffc;
 			rn = get_rng();
 			display_arrows(rn);
 		}
@@ -101,34 +115,39 @@ static void joystick_prg(void){
 	delay_ms(2500);
 }
 
+/* Main Alarm program
+ * Shows generic LCD output
+ * Start subprogram depending on chosen device in settings
+ * */
 void programm (void){
 	//Initial LCD
-		lcd_print_string(text_prg1);
-		delay_ms(2500);
-		uint8_t device = get_device();
-		switch (device ) {
-		case 0:
-			lcd_print_string(text_prg_joy);
-			break;
-		case 1:
-			lcd_print_string(text_prg_touch);
-			break;
-		}
-		delay_ms(2500);
-		lcd_print_string(text_diffi);
-		lcd_set_cursor(1, 8);
-		lcd_print_char(get_difficulty()+ 0x31);
-		//Removes blinking Cursor
-		lcd_set_cursor(1, 15);
-		lcd_print_char(0xFE);
-		delay_ms(2500);
+	lcd_print_string(text_prg1);
+	delay_ms(2500);
+	uint8_t device = get_device();
+	switch (device ) {
+	case 0:
+		lcd_print_string(text_prg_joy);
+		break;
+	case 1:
+		lcd_print_string(text_prg_touch);
+		break;
+	}
+	delay_ms(2500);
+	//Display Difficulty
+	lcd_print_string(text_diffi);
+	lcd_set_cursor(1, 8);
+	lcd_print_char(get_difficulty()+ 0x31);
+	//Remove blinking Cursor
+	lcd_set_cursor(1, 15);
+	lcd_print_char(0xFE);
+	delay_ms(2500);
 
-		switch (device ) {
-		case 0:
-			joystick_prg();
-			break;
-		case 1:
-			lcd_print_string(text_prg_touch);
-			break;
-		}
+	switch (device ) {
+	case 0:
+		joystick_prg();
+		break;
+	case 1:
+		lcd_print_string(text_prg_touch);
+		break;
+	}
 }
