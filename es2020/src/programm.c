@@ -67,7 +67,7 @@ static void display_arrows( uint32_t rn)
 		pos ++;
 		pos ++;
 	}while(pos < end_pos);
-	//fill rest with blanks
+	//fill LCD rest with blanks
 	while(pos < 32){
 		lcd_print_char(0xFE);
 		pos ++;
@@ -123,7 +123,7 @@ static void joystick_prg(void){
 			delay_ms(2500);
 		}
 	}while((pos < end_pos));
-	//fill rest with blanks
+	//fill LCD rest with blanks
 	while(pos < 32){
 		lcd_print_char(0xFE);
 		pos ++;

@@ -6,27 +6,26 @@
 #include "lcd.h"
 
 //Display Texts
-const char* text_settings = ("    Settings    "
-		       	   	    "                ");
-const char* text_help = ("Use Joystick!   "
-		       	   	     "Return w/ White ");
-const char* diffi_l = ("Schwierigkeit:  "
-	       	   	      " [1]   2    3   ");
-const char* diffi_m = ("Schwierigkeit:  "
-	       	   	      "  1   [2]   3   ");
-const char* diffi_h = ("Schwierigkeit:  "
-	       	   	      "  1    2   [3]  ");
-
-const char* device_j = ("Geraeteauswahl: "
-	       	   	        "[Joystick] Touch");
-const char* device_t = ("Geraeteauswahl: "
-	       	   	        "Joystick [Touch]");
-
-const char* touch = ("Touch Test:     "
-	       	   	     "1?2?3?4?5?6?7?8?");
-
-const char* joy_a = ("Joystick analog:"
-	       	   	     "todo: optional  ");
+const char* text_settings 	=  ("    Settings    "
+								"                ");
+const char* text_help 		=  ("Use Joystick!   "
+								"Return w/ White ");
+const char* diffi_l 		=  ("Schwierigkeit:  "
+								" [1]   2    3   ");
+const char* diffi_m 		=  ("Schwierigkeit:  "
+								"  1   [2]   3   ");
+const char* diffi_h 		=  ("Schwierigkeit:  "
+								"  1    2   [3]  ");
+const char* device_j 		=  ("Geraeteauswahl: "
+								"[Joystick] Touch");
+const char* device_t 		=  ("Geraeteauswahl: "
+								"Joystick [Touch]");
+const char* touch 			=  ("Touch Test:     "
+								"1?2?3?4?5?6?7?8?");
+const char* joy_test 		=  ("Joystick Test:  "
+								"Push Joystick   ");
+const char* joy_analog 		=  ("X:              "
+								"Y:              ");
 
 /*internal globals*/
 static uint8_t difficulty = 0;
@@ -86,9 +85,70 @@ static void test_touch(void){
 	delay_ms(100);
 }
 
-static void test_joy(void){
-	lcd_print_string(joy_a);
+static void itoa(int i, char b[]){
+    char const digit[] = "0123456789";
+    char* p = b;
+    if(i<0){
+        *p++ = '-';
+        i *= -1;
+    }
+    int shifter = i;
+    do{ //Move to where representation ends
+        ++p;
+        shifter = shifter/10;
+    }while(shifter);
+    *p = '\0';
+    do{ //Move back, inserting digits as u go
+        *--p = digit[i%10];
+        i = i/10;
+    }while(i);
+}
+
+static void display_joy_a(struct joystick_a joy_a){
+	char x_vaule [4];
+	char y_vaule [4];
+
+	lcd_clear_display();
+	lcd_print_char('X');
+	lcd_print_char(':');
+	lcd_print_char(0xFE);
+	if(joy_a.x < 1000) {lcd_print_char(0xFE);}
+	itoa(joy_a.x, x_vaule);
+	lcd_print_string(x_vaule);
+
+	lcd_set_cursor(1, 0);
+	lcd_print_char('Y');
+	lcd_print_char(':');
+	lcd_print_char(0xFE);
+	lcd_print_char(0xFE);
+	itoa(joy_a.y, y_vaule);
+	lcd_print_string(y_vaule);
+}
+
+static void test_joy(_Bool joy_button){
+	lcd_print_string(joy_test);
 	delay_ms(100);
+	if (joy_button)
+	{
+		_Bool joy_action;
+		struct joystick_a joy_a;
+		joy_action = 0;
+
+		do {
+		// Polling on Inputs
+		do {
+			joy_a = read_joystick_a();
+			joy_action = joy_a.x + joy_a.y;
+			delay_ms(100);
+		} while (!joy_action);
+		//Display x and y
+		lcd_print_string(joy_analog);
+		display_joy_a(joy_a);
+		}while(joy_a.x < 1000); // till joy button
+	delay_ms(750);
+	lcd_clear_display();
+	lcd_print_string(joy_test);
+	}
 }
 
 
@@ -171,7 +231,7 @@ uint16_t settings(void){
 			test_touch();
 			break;
 		case 3:
-			test_joy();
+			test_joy(joy_d.b);
 			break;
 		}
 	}while(1);

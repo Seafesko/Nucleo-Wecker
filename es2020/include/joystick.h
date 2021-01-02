@@ -25,6 +25,7 @@ struct joystick_a read_joystick(void);
 struct joystick_d read_joystick_d(void);
 struct joystick_d analog_to_digital(struct joystick_a joy_ana);
 struct joystick_d get_joy_xy_poll(void);
+struct joystick_a read_joystick_a(void);
 
 #ifdef __cplusplus
 }

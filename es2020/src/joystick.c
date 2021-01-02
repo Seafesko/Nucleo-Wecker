@@ -71,18 +71,17 @@ struct joystick_d read_joystick_d(void){
 	return res;
 }
 
-struct joystick_d analog_to_digital(struct joystick_a joy_ana){
+struct joystick_d analog_to_digital(struct joystick_a joy_a){
 	_Bool button = 0;
 	int8_t x_dig = 0;
-	if 		(joy_ana.x > 1000) 	{button = 1;}  //Button Press
-	else if	(joy_ana.x < 300) 	{x_dig = 1;}   //x up (to Connector)
-	else if (joy_ana.x > 500) 	{x_dig = -1;}  //x down
+	if 		(joy_a.x > 1000) 	{button = 1;}  //Button Press
+	else if	(joy_a.x < 300) 	{x_dig = 1;}   //x up (to Connector)
+	else if (joy_a.x > 600) 	{x_dig = -1;}  //x down
 	else 						{x_dig = 0;}   //x neutral
 
 	int8_t y_dig = 0;
-	if 		(joy_ana.y > 1000) 	{button = 1;}  //Button Press
-	else if	(joy_ana.y < 300) 	{y_dig = 1;}   //y up (to Connector)
-	else if (joy_ana.y > 500) 	{y_dig = -1;}  //y down
+	if	(joy_a.y < 300) 		{y_dig = 1;}   //y up (right from Connector)
+	else if (joy_a.y > 600) 	{y_dig = -1;}  //y down
 	else 						{y_dig = 0;}   //y neutral
 
 	struct joystick_d joy_dig = { x_dig, y_dig, button};
