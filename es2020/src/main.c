@@ -46,6 +46,5 @@ int main(void) {
 
 		if      (button_0) {programm();}
 		else if (button_1) {settings();}
-		else 			   {lcd_print_string(text_main);}
 	}
 }
