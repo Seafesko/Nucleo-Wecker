@@ -2,6 +2,7 @@
 #include "systick.h"
 #include "button.h"
 #include "i2c.h"
+#include "rng.h"
 #include "lcd.h"
 #include "joystick.h"
 #include "settings.h"
@@ -21,10 +22,6 @@ int main(void) {
 	rng_setup();
 
 	//Display Texts
-	const char* text_b0 = ("    Button 0    "
-		       	   	       "    Test!       ");
-	const char* text_b1 = ("    Button 1    "
-		       	   	       "    Test!       ");
 	const char* text_main = ("White --> Alarm!"
             				 "Blue --> Setting");
 
