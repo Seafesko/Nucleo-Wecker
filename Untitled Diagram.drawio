@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-01-04T18:36:07.165Z" agent="5.0 (Windows)" etag="MF1xgqskB0nxC79bOuIP" version="14.1.8" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-01-04T18:54:11.571Z" agent="5.0 (Windows)" etag="uBJK05JLmPOS1VT8jArU" version="14.1.8" type="github" pages="5">
   <diagram id="rOT_2_1dodzJST7O1cHZ" name="Main Menu">
     <mxGraphModel dx="1550" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -673,10 +673,13 @@
         <mxCell id="mUxZGglT5tJOYEj1zue7-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="6EeywIuSSmuNAl2YN2hx-1" source="mUxZGglT5tJOYEj1zue7-7" target="mUxZGglT5tJOYEj1zue7-15" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="459" y="325" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="559" y="355" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="mUxZGglT5tJOYEj1zue7-7" value="Zufallszahl als Pfeile darstellen" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" parent="6EeywIuSSmuNAl2YN2hx-1" vertex="1">
-          <mxGeometry x="499" y="290" width="120" height="30" as="geometry" />
+        <mxCell id="mUxZGglT5tJOYEj1zue7-7" value="Zufallszahl als Pfeile darstellen (von rechts nach links)" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" parent="6EeywIuSSmuNAl2YN2hx-1" vertex="1">
+          <mxGeometry x="499" y="290" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="mUxZGglT5tJOYEj1zue7-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="6EeywIuSSmuNAl2YN2hx-1" source="mUxZGglT5tJOYEj1zue7-14" target="mUxZGglT5tJOYEj1zue7-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -711,7 +714,7 @@
           <mxGeometry x="346.5" y="610" width="105" height="100" as="geometry" />
         </mxCell>
         <mxCell id="OzK1QASRCKUcGp0T1S-Y-2" value="&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;→&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;→&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;&lt;/font&gt;&lt;/div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &quot;&lt;/font&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="6EeywIuSSmuNAl2YN2hx-1">
-          <mxGeometry x="640" y="285" width="140" height="40" as="geometry" />
+          <mxGeometry x="640" y="295" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OzK1QASRCKUcGp0T1S-Y-3" value="&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;→&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;→&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;←&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v^&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;v&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;&lt;/font&gt;&lt;/div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;v &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &quot;&lt;/font&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="6EeywIuSSmuNAl2YN2hx-1">
           <mxGeometry x="489" y="455" width="140" height="40" as="geometry" />
@@ -803,6 +806,12 @@
         </mxCell>
         <mxCell id="OzK1QASRCKUcGp0T1S-Y-54" value="reset = 1;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6EeywIuSSmuNAl2YN2hx-1">
           <mxGeometry x="340" y="107" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OzK1QASRCKUcGp0T1S-Y-58" value="&lt;blockquote&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tbn =&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;b&gt;00&lt;/b&gt; &lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;input = 0000 00&lt;b&gt;00&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;mask = 1111 11&lt;b&gt;00&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;~mask = 0000 00&lt;b&gt;11&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;rn = 1110 01&lt;b&gt;00&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;rn &amp;amp; ~mask = 0000 00&lt;b&gt;00&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;/blockquote&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=right;" vertex="1" parent="6EeywIuSSmuNAl2YN2hx-1">
+          <mxGeometry x="10" y="290" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="OzK1QASRCKUcGp0T1S-Y-59" value="&lt;blockquote&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tbn =&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;b&gt;01&lt;/b&gt; &amp;nbsp; &lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;input = 0000 &lt;b&gt;01&lt;/b&gt;00&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;mask = 1111 &lt;b&gt;00&lt;/b&gt;00&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;~mask = 0000 &lt;b&gt;11&lt;/b&gt;11&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;rn = 1110 &lt;b&gt;0100&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;rn &amp;amp; ~mask = 0000 &lt;b&gt;0000&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;/blockquote&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=right;" vertex="1" parent="6EeywIuSSmuNAl2YN2hx-1">
+          <mxGeometry x="10" y="485" width="250" height="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
