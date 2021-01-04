@@ -117,18 +117,13 @@ static void joystick_prg(void){
 		pos ++;
 		if (input != (rn & ~mask)){
 			reset = 1;
-			lcd_set_cursor(1, 15);
-			lcd_print_char(0xFE);
+			lcd_clear_display();
 			lcd_print_string(text_falsch);
 			delay_ms(2500);
 		}
-	}while((pos < end_pos));
-	//fill LCD rest with blanks
-	while(pos < 32){
-		lcd_print_char(0xFE);
-		pos ++;
-		pos ++;
-	};
+		mask = (mask << 2);
+	}while( (pos < end_pos) | reset );
+	lcd_clear_display();
 	lcd_print_string(text_richtig);
 	delay_ms(2500);
 }
