@@ -115,7 +115,6 @@ static void joystick_prg(void){
 		tbn = to_two_bit_number(get_joy_xy_poll());
 		display_arrow(tbn);
 		input =  input | (tbn << pos);
-		if (pos != 0) {mask = (mask << 2);}
 		pos ++;
 		pos ++;
 		if (input != (rn & ~mask)){
