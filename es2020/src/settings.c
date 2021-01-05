@@ -203,7 +203,7 @@ uint16_t settings(void){
 	lcd_print_string(text_settings);
 	delay_ms(1500);
 	lcd_print_string(text_help);
-	delay_ms(1500);
+	delay_ms(3000);
 	choose_diff(0);
 
 	do {
