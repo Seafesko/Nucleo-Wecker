@@ -6,6 +6,8 @@
 #include "systick.h"
 #include <stm32l073xx.h>
 #include <led.h>
+#include <stdbool.h> 
+
 
 //Display Texts
 const char* text_prg1 = 		("Alarm! Wach auf!"
