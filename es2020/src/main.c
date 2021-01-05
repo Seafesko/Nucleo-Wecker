@@ -7,7 +7,7 @@
 #include "joystick.h"
 #include "settings.h"
 #include <stm32l073xx.h>
-
+#include <led.h>
 
 
 int main(void) {
@@ -20,7 +20,10 @@ int main(void) {
 	button_setup();
 	joystick_setup();
 	rng_setup();
-
+	led_setup();
+	TIM7_Init();
+	NVIC_EnableIRQ(TIM7_IRQn);
+	
 	//Display Texts
 	const char* text_main = ("White --> Alarm!"
             				 "Blue --> Setting");
