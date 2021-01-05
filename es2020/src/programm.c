@@ -5,6 +5,7 @@
 #include "lcd.h"
 #include "systick.h"
 #include <stm32l073xx.h>
+#include <led.h>
 
 //Display Texts
 const char* text_prg1 = 		("Alarm! Wach auf!"
@@ -136,6 +137,7 @@ void programm (void){
 	//Initial LCD
 	lcd_print_string(text_prg1);
 	delay_ms(2500);
+	led_status(true);
 	uint8_t device = get_device();
 	switch (device ) {
 	case 0:
@@ -158,9 +160,12 @@ void programm (void){
 	switch (device ) {
 	case 0:
 		joystick_prg();
+
 		break;
 	case 1:
 		lcd_print_string(text_prg_touch);
 		break;
 	}
+	led_status(false);
+	led_off();
 }
