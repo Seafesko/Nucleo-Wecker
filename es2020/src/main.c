@@ -23,7 +23,7 @@ int main(void) {
 	led_setup();
 	TIM7_Init();
 	NVIC_EnableIRQ(TIM7_IRQn);
-	
+	touch_init();
 	//Display Texts
 	const char* text_main = ("White --> Alarm!"
             			 "Blue --> Setting");
