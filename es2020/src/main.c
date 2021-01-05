@@ -26,7 +26,7 @@ int main(void) {
 	
 	//Display Texts
 	const char* text_main = ("White --> Alarm!"
-            				 "Blue --> Setting");
+            			 "Blue --> Setting");
 
 	_Bool button_press;
 	_Bool button_0;
