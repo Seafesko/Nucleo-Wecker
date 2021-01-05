@@ -21,8 +21,8 @@ const char* device_j 		=  ("Geraeteauswahl: "
 								"[Joystick] Touch");
 const char* device_t 		=  ("Geraeteauswahl: "
 								"Joystick [Touch]");
-const char* touch 			=  ("Touch Test:     "
-								"1?2?3?4?5?6?7?8?");
+const char* touch 			=  ("Touch ch12345678"
+								"Test:          ");
 const char* joy_test 		=  ("Joystick Test:  "
 								"Push Joystick   ");
 const char* joy_analog 		=  ("X:              "
