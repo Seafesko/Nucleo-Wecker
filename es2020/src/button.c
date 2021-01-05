@@ -22,7 +22,14 @@ void button_setup(void){
 
 //Returns 1 if Button_0 is currently pressed else 0
 bool read_button_0(void){
-	return GPIO_IDR_ID4_Pos >> (GPIOB->IDR & (GPIO_IDR_ID4_Msk));
+	// Debounce thru waiting for 2 ms
+	bool is_Pressed = GPIO_IDR_ID4_Pos >> (GPIOB->IDR & (GPIO_IDR_ID4_Msk));
+	delay_ms(2);
+	if (is_Pressed){
+		return GPIO_IDR_ID4_Pos >> (GPIOB->IDR & (GPIO_IDR_ID4_Msk));
+	}
+	else
+	return false;
 }
 
 //Returns 1 if Button_1 is currently pressed else 0
