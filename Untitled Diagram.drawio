@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-01-04T19:38:49.342Z" agent="5.0 (Windows)" etag="myP5kasuc9ujJVMFMkTi" version="14.1.8" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-01-05T15:51:14.927Z" agent="5.0 (Windows)" etag="kzy23gziXvMQS9Yget2C" version="14.1.8" type="github" pages="5">
   <diagram id="rOT_2_1dodzJST7O1cHZ" name="Main Menu">
-    <mxGraphModel dx="1550" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1069" dy="377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="ULeVMZqXTmx9Lc_fdObT-0" />
         <mxCell id="ULeVMZqXTmx9Lc_fdObT-1" parent="ULeVMZqXTmx9Lc_fdObT-0" />
@@ -126,7 +126,7 @@
         <mxCell id="Jq_nAqYJOBR7DEDlHNhW-0" value="&lt;p&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;Schwierigkeit:&amp;nbsp; &quot; &quot; [1]&amp;nbsp;&amp;nbsp; 2&amp;nbsp;&amp;nbsp;&amp;nbsp; 3&amp;nbsp;&amp;nbsp; &quot;&lt;/font&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="uun37S1YXeA-4gwnj6Af-1" vertex="1">
           <mxGeometry x="530" y="610" width="140" height="35" as="geometry" />
         </mxCell>
-        <mxCell id="Jq_nAqYJOBR7DEDlHNhW-2" value="&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;Touch Test:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;1+2+3 4 5+6 7 8 &quot;&lt;/font&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="uun37S1YXeA-4gwnj6Af-1" vertex="1">
+        <mxCell id="Jq_nAqYJOBR7DEDlHNhW-2" value="&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;Touch ch12345678&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&quot;Test:&amp;nbsp; 101010101&quot;&lt;/font&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="uun37S1YXeA-4gwnj6Af-1" vertex="1">
           <mxGeometry x="530" y="889" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="wjKPBIFovO-EprEUyrDN-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="uun37S1YXeA-4gwnj6Af-1" source="1HByYj29Go8zdHcYO53W-1" target="vAqJvNbOjI83IijOuLHi-4" edge="1">
