@@ -4,6 +4,7 @@
 #include "button.h"
 #include "systick.h"
 #include "lcd.h"
+#include "touch.h"
 
 //Display Texts
 const char* text_settings 	=  ("    Settings    "
@@ -82,6 +83,13 @@ static void choose_device(int8_t joy_d_y){
 
 static void test_touch(void){
 	lcd_print_string(touch);
+	uint8_t touch_zustaende [8];
+	getTouchData(touch_zustaende);
+	for (uint8_t i=0;i<8;i++){
+		lcd_set_cursor(1, 8+i);
+		char zeichen = (touch_zustaende[i]+ 0x30);
+		lcd_print_char(zeichen);
+	}
 	delay_ms(100);
 }
 
