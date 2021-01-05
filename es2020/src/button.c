@@ -27,7 +27,14 @@ bool read_button_0(void){
 
 //Returns 1 if Button_1 is currently pressed else 0
 bool read_button_1(void){
-	return GPIO_IDR_ID5_Pos >> (GPIOB->IDR & (GPIO_IDR_ID5_Msk));
+	// Debounce thru waiting for 2 ms
+	bool is_Pressed = GPIO_IDR_ID5_Pos >> (GPIOB->IDR & (GPIO_IDR_ID5_Msk));
+	delay_ms(2);
+	if (is_Pressed){
+		return GPIO_IDR_ID5_Pos >> (GPIOB->IDR & (GPIO_IDR_ID5_Msk));
+	}
+	else
+	return false;
 }
 
 
