@@ -10,7 +10,7 @@ void rng_setup(void){
 
 //https://en.wikipedia.org/wiki/Xorshift
 /* The state word must be initialized to non-zero */
-uint32_t xorshift32(uint32_t state)
+static uint32_t xorshift32(uint32_t state)
 {
 	/* Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs" */
 	uint32_t x = state;
@@ -20,18 +20,13 @@ uint32_t xorshift32(uint32_t state)
 	return x;
 }
 
-static uint32_t get_pseudo_rng(void){
+ uint32_t get_rng(void){
 	uint32_t seed = TIM6->CNT;
 	if (seed == 0)
 	{
 		seed = 0x15; //something != 0
 	}
 	return xorshift32(seed);
-}
-
-uint32_t get_rng(void){
-	uint32_t rn = get_pseudo_rng();
-	return rn;
 }
 
 
