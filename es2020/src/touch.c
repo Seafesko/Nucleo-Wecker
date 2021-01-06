@@ -58,7 +58,7 @@ void getTouchData(uint8_t *dataPtr){
 
 	write_buffer = TOUCH_STATUS_REG_ADDR_H;
 	i2c_transfer(TOUCH_I2C_ADDRESS,write_buffer, bytes_to_write, NULL, 0);
-	i2c_transfer(TOUCH_I2C_ADDRESS, NULL, 0, dataBuffer[0], bytes_to_read);
+	i2c_transfer(TOUCH_I2C_ADDRESS, NULL, 0, dataBuffer[1], bytes_to_read);
 
 	dataBuffer[0] &=0x0F;
 	dataBuffer[1] = dataBuffer[1] << 4;
