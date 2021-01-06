@@ -12,7 +12,6 @@ void rng_setup(void){
 /* The state word must be initialized to non-zero */
 static uint32_t xorshift32(uint32_t state)
 {
-	/* Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs" */
 	uint32_t x = state;
 	x ^= x << 13;
 	x ^= x >> 17;
