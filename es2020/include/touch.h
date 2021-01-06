@@ -9,7 +9,7 @@ extern "C" {
 #include <stdint.h>
 #endif
 
-void touch_init(void);
+void touch_setup(void);
 uint8_t getTouchDetail(uint8_t channel);
 void getTouchData(uint8_t *dataPtr);
 
