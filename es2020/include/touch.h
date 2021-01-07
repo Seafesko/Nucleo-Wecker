@@ -10,8 +10,9 @@ extern "C" {
 #endif
 
 void touch_setup(void);
-uint8_t getTouchDetail(uint8_t channel);
+uint16_t getTouchDetail(uint8_t channel);
 void getTouchData(uint8_t *dataPtr);
+static void setRegister(uint8_t reg, uint8_t data);
 
 #ifdef __cplusplus
 }
@@ -30,49 +31,26 @@ void getTouchData(uint8_t *dataPtr);
 /*0X1E~0X2A*/
 #define BASELINE_VALUE_REG_START_ADDR             0X1E
 
-
 /*All12 of the electrode baseline values are controlled by the same set of filtering control registers, 0x2B ~ 0x35*/
 /*The 13th channel ELEPROX is controlled by registers 0x36 ~ 0x40*/
 #define BASELINE_FILTERING_CONTROL_REG_START_ADDR    0X2B
 
-
-/*Each of the 12 channels can be set with its own set of touch and release thresholds. Touch and release are detected by
-comparing the electrode filtered data to the baseline value. typically in the range 0x04~0x10*/
-/*Touch condition: Baseline - Electrode filtered data > Touch threshold
-  Release condition: Baseline - Electrode filtered data < Release threshold*/
-#define THRESHOLD_REG_START_ADDR            0X41
-
-/*All 12 channels use the same set of touch and release debounce numbers.*/
-#define DEBOUNCE_REG_ADDR                   0X5B
-
-/*These two registers set the global AFE settings. This includes global electrode charge/discharge current CDC, global charge/
-discharge time CDT, as well as a common filtering setting (FFI, SFI, ESI) for all 12 channels, including the 13th Eleprox channel*/
-#define FILTER_AND_GLOBAL_CDC_CFG_ADDR      0X5C
-#define FILTER_AND_GLOBAL_CDT_CFG_ADDR      0X5D
-
 /*0X5F-0X6B*/
 #define ELEC_CHARGE_CURRENT_REG_START_ADDR  0X5F
 
-/*0X6C-0X72*/
-#define ELEC_CHARGE_TIME_REG_START_ADDR  0X6C
-
-/*The Electrode Configuration Register (ECR) determines if the MPR121 is in Run Mode or Stop Mode*/
-/*Default is 0 to stop mode*/
-#define ELEC_CFG_REG_ADDR                    0X5E
-
-
-
-
 #define TOUCH_I2C_ADDRESS 0x5b
-#define TOUCH_CH1_CH7_OFFSET = 0x00
 #define THRESHOLD_REG_START_ADDR            0X41
-#define TOUCH_BASELINE_OFFSET = 			0x1e
-//#define TOUCH_BASELINE_VALUE =
 #define DEBOUNCE_REG_ADDR                   0X5B
 #define FILTER_AND_GLOBAL_CDC_CFG_ADDR      0X5C
 #define FILTER_AND_GLOBAL_CDT_CFG_ADDR      0X5D
 #define ELEC_CFG_REG_ADDR                   0X5E
 
 #define FILTERED_DATA_REG_START_ADDR_L      0X04
+#define AUTO_CONFIG_CONTROL_REG_0		    0X7B
+#define AUTO_CONFIG_CONTROL_REG_1		    0X7C
+#define AUTO_CONFIG_CONTROL_REG_USL		    0X7D
+#define AUTO_CONFIG_CONTROL_REG_LSL		    0X7E
+#define AUTO_CONFIG_CONTROL_REG_TL		    0X7F
 
+#define SOFT_RESET						    0X80
 #endif
